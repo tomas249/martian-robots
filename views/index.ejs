@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="title">Welcome to Martian Robots Simulation</div>
+
+    <div class="content">
+      <div class="list-container">
+        <h3>Simulations list (select to view details)</h3>
+
+        <div class="list">
+          <% if (data && data.simulationsList && data.simulationsList.length > 0) { %> <%
+          for(let simulation of data.simulationsList.reverse()) { %>
+          <div class="simulation-container simulation-item">
+            <div>
+              ID:
+              <strong>
+                <span class="simulation-id"><%= simulation._id %></span>
+              </strong>
+            </div>
+            <div>Boundary: (<%= simulation.boundary %>)</div>
+            <div>N. of expeditions: <%= simulation.expeditionsCount %></div>
+            <div>N. of lost robots: <%= simulation.lostRobotsCount %></div>
+          </div>
+          <% } %> <% } else { %>
+          <div>No simulations yet!</div>
+          <% } %>
+        </div>
+      </div>
+
+      <div class="instructions-container">
+        <form action="/api/simulations/start" method="POST" class="instructions">
+          <p>
+            To start a simulation you can write the file's name that contains the
+            instructions. By default there is `mock.txt`. (Just type `mock.txt` and press
+            `Start simulation`)
+          </p>
+          <p>However, you can provide instructions too.</p>
+          <p>Remember to follow the correct structure:</p>
+          <table>
+            <tr>
+              <td>Structure</td>
+              <td>Example</td>
+            </tr>
+            <tr>
+              <td>BOUNDARY</td>
+              <td>5 3</td>
+            </tr>
+            <tr>
+              <td>POSITION ORIENTATION</td>
+              <td>1 1 E</td>
+            </tr>
+            <tr>
+              <td>INSTRUCTIONS</td>
+              <td>RFRFRFRF</td>
+            </tr>
+            <tr>
+              <td>POSITION ORIENTATION</td>
+              <td>3 2 N</td>
+            </tr>
+            <tr>
+              <td>INSTRUCTIONS</td>
+              <td>FRRFLLFFRRFLL</td>
+            </tr>
+          </table>
+          <textarea class="expedition-data" name="expeditionData"></textarea>
+          <input type="submit" value="Start simulation" />
+        </form>
+      </div>
+    </div>
+
+    <script src="/js/script.js"></script>
+  </body>
+</html>

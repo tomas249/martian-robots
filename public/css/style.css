@@ -1,0 +1,71 @@
+body {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: aliceblue;
+}
+
+.title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+.content {
+  width: 85%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+h3 {
+  text-align: center;
+}
+
+p {
+  font-size: 1.3rem;
+}
+
+.simulation-container {
+  border: 1px solid blue;
+  padding: 1rem 2rem;
+  margin-top: 0.7rem;
+  cursor: pointer;
+}
+
+.simulation-container:hover:not(.create) {
+  background-color: rgb(174, 174, 250);
+}
+
+.list-container {
+  flex: 1;
+}
+
+.list {
+  max-height: 60vh;
+  overflow-y: scroll;
+}
+
+.instructions-container {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  padding-left: 4rem;
+}
+
+.expedition-data {
+  margin-top: 2rem;
+  min-width: 90%;
+  max-width: 90%;
+  min-height: 300px;
+}

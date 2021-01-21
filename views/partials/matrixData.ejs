@@ -1,0 +1,28 @@
+<div class="matrix-container">
+  <div
+    class="matrix"
+    style="grid-template-columns: repeat(<%= data.size + 1 %>, 1fr)"
+  >
+    <%
+    data.matrix.slice().reverse().concat([Array.from(Array(data.size).keys())]).forEach((row,
+    y, rows) => { %>
+    <!-- Y coord -->
+    <% if (y === rows.length-1) { %>
+    <div></div>
+    <% } else { %>
+    <div class="border-y"><%= rows.length-y-2 %></div>
+    <% } %> <% row.forEach((value, x, values) => { %> <% if (y ===
+    rows.length-1) { %>
+    <!-- X Coord -->
+    <div class="border-x"><%= x %></div>
+    <% } else { %>
+    <!-- Values -->
+    <% if (value) { %>
+    <div class="border-x border-y" style="background-color: <%= color %>">
+      <%= displayValues ? value : 'X' ; %>
+    </div>
+    <% } else { %>
+    <div class="border-x border-y"></div>
+    <% } %> <% } %> <% }); %> <% }); %>
+  </div>
+</div>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/simulation.css">
+  <link rel="stylesheet" href="/css/matrixData.css">
+  <title>Document</title>
+</head>
+<body>
+
+  <h1>Simulation #<%= data.simulation._id %></h1>
+  <table>
+    <tr>
+      <td>Boundary:</td>
+      <td>(<%= data.simulation.boundary %>)</td>
+    </tr>
+    <tr>
+      <td>Number of expeditions:</td>
+      <td><%= data.simulation.expeditionsCount %></td>
+    </tr>
+    <tr>
+      <td>Number of lost robots:</td>
+      <td><%= data.simulation.lostRobotsCount %></td>
+    </tr>
+  </table>
+  <table>
+    <th>
+      <td><h2>Total Explored Surface</h2></td>
+      <td><h2>Total Scent Surface</h2></td>
+    </th>
+    <tr>
+      <td class="table-index">Total:</td>
+      <td><%= data.simulation.exploredSurface.count %></td>
+      <td><%= data.simulation.scentSurface.count %></td>
+    </tr>
+    <tr>
+      <td class="table-index">Coordinates:</td>
+      <td><%= data.simulation.exploredSurface.coordinates.map(c => `(${c[0]},${c[1]})`).join(', ') %></td>
+      <td><%= data.simulation.scentSurface.coordinates.map(c => `(${c[0]},${c[1]})`).join(', ') %></td>
+    </tr>
+    <tr>
+      <td class="table-index">Graphic:</td>
+      <td class="table-matrix"><%- include('partials/matrixData.ejs', {data: data.simulation.exploredSurface, title: 'Explored surface', displayValues: true, color: 'lightgreen'}) %></td>
+      <td class="table-matrix"><%- include('partials/matrixData.ejs', {data: data.simulation.scentSurface, title: 'Scent surface', displayValues: false, color: 'orange'}) %></td>
+    </tr>
+    <tr>
+      <td></td>
+      <!-- <td><p>* Numbers represent how many times a cell was explored.</p></td> -->
+    </tr>
+  </table>
+
+  <% data.simulation.expeditions.forEach((expedition, i) => { %>
+    <h2>Expedition #<%= i+1 %></h2>
+
+    <table>
+      <tr>
+        <td>Spawn position:</td>
+        <td><%= `(${expedition.spawnPosition.coordinates}) ${expedition.spawnPosition.orientation}` %></td>
+      </tr>
+      <tr>
+        <td>Destination position:</td>
+        <td><%= `(${expedition.destinationPosition.coordinates}) ${expedition.destinationPosition.orientation}` %></td>
+      </tr>
+      <tr>
+        <td>Was the robot lost?:</td>
+        <td><%= expedition.isLost ? 'YES' : 'NO' ; %></td>
+      </tr>
+      <tr>
+        <td>Instructions:</td>
+        <td><%= expedition.instructions.join(' - '); %></td>
+      </tr>
+    </table>
+    <table>
+      <th>
+        <td><h2>Explored Surface</h2></td>
+        <td><h2>Scent Surface</h2></td>
+      </th>
+      <tr>
+        <td class="table-index">Total:</td>
+        <td><%= expedition.exploredSurface.count %></td>
+        <td><%= expedition.scentSurface.count %></td>
+      </tr>
+      <tr>
+        <td class="table-index">Coordinates:</td>
+        <td><%= expedition.exploredSurface.coordinates.map(c => `(${c[0]},${c[1]})`).join(', ') %></td>
+        <td><%= expedition.scentSurface.coordinates.map(c => `(${c[0]},${c[1]})`).join(', ') %></td>
+      </tr>
+      <tr>
+        <td class="table-index">Graphic:</td>
+        <td><%- include('partials/matrixData.ejs', {data: expedition.exploredSurface, title: 'Explored surface', displayValues: true, color: 'lightgreen'}) %></td>
+        <td><%- include('partials/matrixData.ejs', {data: expedition.scentSurface, title: 'Scent surface', displayValues: false, color: 'orange'}) %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <!-- <td><p>* Numbers represent how many times a cell was explored.</p></td> -->
+      </tr>
+    </table>
+
+  <% }); %>
+  
+
+  <script src="/js/simulation.js"></script>
+</body>
+</html>

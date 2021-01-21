@@ -1,0 +1,33 @@
+.matrix-container {
+  display: flex;
+}
+
+.matrix {
+  display: grid;
+}
+.matrix div {
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+
+.matrix div::before {
+  content: '';
+  padding-bottom: 100%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.matrix-data {
+  background-color: lightgreen;
+}
+
+.border-y {
+  border-right: 2px solid;
+}
+.border-x {
+  border-top: 2px solid;
+}
