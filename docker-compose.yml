@@ -1,12 +1,14 @@
 version: '3'
 services:
-  api-server:
-    image: api-server
+  server:
+    container_name: martian_robots_server
+    build: .
     ports:
       - '9000:3000'
-    depends_on:
+    external_links:
       - mongo
   mongo:
-    image: mongo:3.6.21-xenial
+    container_name: mongo
+    image: mongo
     ports:
       - '27017:27017'
