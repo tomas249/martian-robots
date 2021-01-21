@@ -1,8 +1,8 @@
 # Martian robots simulation
 
-Code that simulates robot instructions into a grid and returns its destination. Live demo at: http://martian-robots.tomastm.me/
+Code that simulates robot instructions into a grid and returns its destination. The technologies that were used are NodeJS and MongoDB.
 
-The technologies that were used are NodeJS and MongoDB.
+Live demo at: http://martian-robots.tomastm.me/
 
 ### How it works?
 
